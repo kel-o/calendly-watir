@@ -3,7 +3,7 @@ class LandingPage
     
     def initialize(browser)
         @browser = browser
-        @HOST_NAME = ''
+        @HOST_NAME = 'bravo-qa.calendly.com'
         # @my_page_object = MyPageObject.new(@browser)
     end 
 

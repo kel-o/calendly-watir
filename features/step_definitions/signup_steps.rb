@@ -53,6 +53,6 @@ And(/^I click submit$/) do
     @landing_page.submit_signup 
 end
 Then(/^I will be directed to invitation confirmation screen$/) do
-    expect(@landing_page.invitation_sent_text).to eq('Before continuing, we need to verif your email address. Please check your inbox for a confirmation link.')
+    expect(@landing_page.invitation_sent_text).to eq('Before continuing, we need to verify your email address. Please check your inbox for a confirmation link.')
 end 
 
