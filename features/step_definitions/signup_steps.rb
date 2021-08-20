@@ -19,14 +19,14 @@ When(/^I am on the (.+)$/) do |page_name|
  end 
  And(/^I enter my email address into the sign up text box$/) do
      @landing_page.enter_email_address(@email_address)
- end 
+ end   
  When(/^I submit email$/) do
      @landing_page.submit_email 
  end 
  Then(/^I am redirected to the (.+)$/) do |page| 
     case page
     when 'choose auth page'
-        expect(@landing_page.auth_page_element).to exist 
+        expect(@landing_page.choose_auth_page_google).to exist 
     when 'sign up page'
         expect(@landing_page.signup_page_element).to exist
     end
@@ -38,6 +38,10 @@ end
     case action
     when 'click password auth'
         @landing_page.create_password_account_button 
+    when 'click google auth'
+        @landing_page.choose_auth_page_google.click
+    when 'click outlook auth'
+        @landing_page.choose_auth_page_outlook.click
     when 'verify I am on the sign up page'
         expect(@landing_page.signup_page_element).to exist
     end 
@@ -52,7 +56,14 @@ end
 And(/^I click submit$/) do 
     @landing_page.submit_signup 
 end
-Then(/^I will be directed to invitation confirmation screen$/) do
-    expect(@landing_page.invitation_sent_text).to eq('Before continuing, we need to verify your email address. Please check your inbox for a confirmation link.')
+Then(/^I will be directed to the (.+)$/) do |redirect_page|
+    case redirect_page
+    when 'google oauth page'
+        expect(@landing_page.browser.url).to include('accounts.google')
+    when 'outlook oauth page'
+        expect(@landing_page.browser.url).to include('login.microsoftonline')
+    when 'invitation confirmation screen'
+        expect(@landing_page.invitation_sent_text).to eq('Before continuing, we need to verify your email address. Please check your inbox for a confirmation link.')
+    end 
 end 
 

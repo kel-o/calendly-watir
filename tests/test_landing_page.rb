@@ -1,12 +1,14 @@
-# require 'pry'
-# require 'watir'
+require 'pry'
+require 'watir'
 
-# browser = Watir::Browser.new :chrome
-# browser.goto ''
-# binding.pry
+browser = Watir::Browser.new :chrome
+browser.goto 'bravo-qa.calendly.com'
+binding.pry
 
-# browser.text_field(name: 'email', :index => 1 ).set 'kel.okekpe+watir11@calendly.com'
-# browser.button(type: 'submit', :index => 1).click
+browser.text_field(name: 'email', :index => 1 ).set 'kel.okekpe+watir111@calendly.com'
+
+browser.button(type: 'submit', :index => 1).click
+binding.pry
 # browser.p(:index => 0).text
 # browser.button(value: 'Click here').click
 # binding.pry

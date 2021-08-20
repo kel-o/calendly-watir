@@ -3,7 +3,7 @@ class LandingPage
     
     def initialize(browser)
         @browser = browser
-        @HOST_NAME = ''
+        @HOST_NAME = 'bravo-qa.calendly.com'
         # @my_page_object = MyPageObject.new(@browser)
     end 
 
@@ -11,10 +11,10 @@ class LandingPage
         @browser.goto "#{@HOST_NAME}"
     end 
 
+    #landing page, signup elements
     def email_textbox
         @browser.text_field(name: 'email', :index => 1 )
     end 
-    
     
     def enter_email_address(email)
         @browser.text_field(name: 'email', :index => 1 ).set email
@@ -23,13 +23,38 @@ class LandingPage
     def submit_email
         @browser.button(type: 'submit', :index => 1).click 
     end 
+    ####################
 
-    # in signup_steps.rb, we check for the existence of this element to verify the current page
-    def auth_page_element
-        @browser.span(class: 'icon-google').wait_until(&:present?)
+
+    #login page elements
+    def login_button
+        @browser.element(text: 'Log In' )
     end 
 
-     # in signup_steps.rb, we check for the existence of this elemtn to verify the current page
+    def login_email_textbox
+        @browser.text_field(placeholder: 'Enter your email')
+    end 
+    ####################
+
+    # sign up page elements
+    # in signup_steps.rb, we check for the existence of this element to verify the current page
+    def choose_auth_page_google
+        @browser.element(text: 'Sign up with Google').wait_until(&:present?)
+    end 
+
+    def click_google_auth 
+        @browser.element(text: 'Sign up with Google').wait_until(&:present?).click
+    end 
+
+    def choose_auth_page_outlook 
+        @browser.element(text: 'Sign up with Outlook.com').wait_until(&:present?)
+    end 
+
+    def click_outlook_auth
+        @browser.element(text: 'Sign up with Outlook.com').wait_until(&:present?).click
+    end 
+
+     # in signup_steps.rb, we check for the existence of this element to verify the current page
     def signup_page_element
         @browser.button(value: 'Continue').wait_until(&:present?)
     end
@@ -37,6 +62,7 @@ class LandingPage
     def create_password_account_button 
         @browser.button(text: 'Click here').click()
     end 
+    ######################
 
   
     def set_name_text_field(name) 
