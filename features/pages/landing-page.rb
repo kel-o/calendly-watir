@@ -13,15 +13,15 @@ class LandingPage
 
     #landing page, signup elements
     def email_textbox
-        @browser.text_field(name: 'email', :index => 1 )
+        @browser.div('data-testid': 'email-input').text_field
     end 
     
     def enter_email_address(email)
-        @browser.text_field(name: 'email', :index => 1 ).set email
+        email_textbox.set email
     end 
 
     def submit_email
-        @browser.button(type: 'submit', :index => 1).click 
+        @browser.button('data-testid':'regular-button').click 
     end 
     ####################
 
